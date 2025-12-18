@@ -52,7 +52,7 @@ const HomePage = ({
           { id: '5', operator: selectedProvider, amount: 49, validity: '28 days', data: 'NA', category: 'TOP_UP', description: 'Talktime ₹39' }
         ];
         setPlans(mockPlans);
-        setError('Using demo data - API connection failed');
+        // Silently use demo data
       } finally {
         setLoading(false);
       }
