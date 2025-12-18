@@ -43,16 +43,8 @@ const HomePage = ({
         setPlans(byProvider);
       } catch (err) {
         console.error('Failed to load plans', err);
-        // Fallback to mock data
-        const mockPlans = [
-          { id: '1', operator: selectedProvider, amount: 199, validity: '28 days', data: '2GB/day', category: 'POPULAR', description: 'Unlimited calls + SMS' },
-          { id: '2', operator: selectedProvider, amount: 399, validity: '56 days', data: '3GB/day', category: 'POPULAR', description: 'Unlimited calls + SMS' },
-          { id: '3', operator: selectedProvider, amount: 599, validity: '84 days', data: '2GB/day', category: 'ANNUAL', description: 'Unlimited calls + SMS' },
-          { id: '4', operator: selectedProvider, amount: 99, validity: '28 days', data: '6GB', category: 'DATA_ONLY', description: 'Data only plan' },
-          { id: '5', operator: selectedProvider, amount: 49, validity: '28 days', data: 'NA', category: 'TOP_UP', description: 'Talktime ₹39' }
-        ];
-        setPlans(mockPlans);
-        // Silently use demo data
+        setError('Failed to load plans');
+        setPlans([]);
       } finally {
         setLoading(false);
       }
