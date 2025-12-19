@@ -36,6 +36,29 @@ const AuthModal = ({ isOpen, onClose, onLogin, theme }) => {
     setIsLoading(true);
 
     try {
+      // Demo login - bypass API for testing
+      if (mode === 'LOGIN') {
+        // Demo users
+        const demoUsers = {
+          'admin@admin.com': { name: 'Admin User', email: 'admin@admin.com', isAdmin: true, _id: 'admin1' },
+          'suji@gmail.com': { name: 'Suji', email: 'suji@gmail.com', isAdmin: false, _id: 'user1' },
+          'user@test.com': { name: 'Test User', email: 'user@test.com', isAdmin: false, _id: 'user2' }
+        };
+        
+        const user = demoUsers[email.toLowerCase()];
+        if (user && password.length >= 6) {
+          setIsLoading(false);
+          onLogin(user);
+          setEmail('');
+          setPassword('');
+          return;
+        } else {
+          setError('Invalid credentials. Try admin@admin.com or suji@gmail.com');
+          setIsLoading(false);
+          return;
+        }
+      }
+
       let createdUser = null;
       let existingUser = null;
 
